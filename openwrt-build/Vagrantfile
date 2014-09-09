@@ -21,12 +21,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |vb|
   #   # Don't boot with headless mode
   #   vb.gui = true
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
       vb.customize ["modifyvm", :id, "--memory", "1024"]
-  # end
+  end
   #
+
+  # Update software and install prereqs
+  config.vm.provision "shell",
+    inline: "apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade ; DEBIAN_FRONTEND=noninteractive apt-get -y install git build-essential virtualbox-guest-utils virtualbox-guest-dkms make"
+
 end
