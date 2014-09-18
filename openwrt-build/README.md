@@ -12,6 +12,7 @@ fetch-conffiles.sh script (run from inside the Imagebuilder directory)
 Making
 ----------
 make image PROFILE=TLWR841 FILES=files/
+make image PROFILE=TLWR841 FILES=files/ PACKAGES="-ppp -ppp-mod-pppoe luci openvpn-openssl"
 
 
 What's included
