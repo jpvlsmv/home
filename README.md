@@ -29,3 +29,9 @@ I use these plugins, so I (should) add them into every Vagrantfile:
       config.vbguest.auto_update = true
       config.vbguest.no_remote = true
     end
+    
+    config.vm.provision "shell",
+      inline: "apt-get update ; 
+               DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade ; 
+               DEBIAN_FRONTEND=noninteractive apt-get -y install git"
+
