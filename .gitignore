@@ -1,0 +1,6 @@
+.vagrant
+*~
+*.swp
+*.apk
+*.zip
+*.bz2
