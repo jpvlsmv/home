@@ -68,7 +68,7 @@ Vagrant.configure(2) do |config|
     sudo apt-get update
     sudo apt-get dist-upgrade -y
     sudo apt-get install git
-    dpkg -i /vagrant/sw/splunk-6.2.1-245427-linux-2.6-amd64.deb && su - splunk -c 'bin/splunk start --accept-license' && /opt/splunk/bin/splunk enable boot-start -user splunk"
+    dpkg -i /vagrant/sw/splunk-*-linux-2.6-amd64.deb && su - splunk -c 'bin/splunk start --accept-license' && /opt/splunk/bin/splunk enable boot-start -user splunk"
     su - splunk -c /vagrant/splunk-baseconfig.sh"
 SHELL
 end

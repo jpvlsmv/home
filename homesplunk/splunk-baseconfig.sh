@@ -10,6 +10,4 @@ cat >> /opt/splunk/etc/system/local/server.conf <<EOF
 active_group = Free
 EOF
 
-$SPLUNK install app /vagrant/sw/sos-splunk-on-splunk_32.tgz
-
 $SPLUNK restart splunkd
