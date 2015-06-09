@@ -14,6 +14,15 @@ Vagrantfile additions
 ---------
 I use these plugins, so I (should) add them into every Vagrantfile:
 
+    # I don't like the default VM name, so let's make it better:
+    config.vm.define "primary", primary: true do |work|
+      config.vm.hostname = "#{File.basename(Dir.getwd)}-primary"
+    end
+    # and while I'm working, I like to have another VM to reprovision when I change the Vagrantfile.
+    config.vm.define "prov", autostart: false do |prov|
+      config.vm.hostname = "#{File.basename(Dir.getwd)}-prov"
+    end
+    
     # We use a proxy, install the Vagrant proxyconf plugin (vagrant plugin install vagrant-proxyconf
     if Vagrant.has_plugin?("vagrant-proxyconf")
       config.proxy.http=ENV['http_proxy']
@@ -31,7 +40,9 @@ I use these plugins, so I (should) add them into every Vagrantfile:
     end
     
     config.vm.provision "shell",
-      inline: "apt-get update ; 
+      inline: <<-DOUPDATE
+               apt-get update ; 
                DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade ; 
-               DEBIAN_FRONTEND=noninteractive apt-get -y install git"
+               DEBIAN_FRONTEND=noninteractive apt-get -y install git
+               DOUPDATE
 
